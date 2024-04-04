@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.eventosapp.models.Evento;
 import com.eventosapp.repository.EventoRepository;
@@ -34,7 +35,21 @@ public class EventoController {
 		return "redirect:/cadastrarEvento";
 	}
 	
+	//Metodo para ele retornar a lista de eventos
+	@RequestMapping("/eventos")
+	public ModelAndView listaEventos(){
+		//Passando para ele a página que vai renderizar de acordo com os dados do evento
+		ModelAndView mv = new ModelAndView("index");
+		
+		//Buscando os eventos no banco de dados
+		Iterable<Evento> eventos = er.findAll();
+		
+		//Passando para a view a minha lista de eventos, para que a página seja renderizada 
+		//de acordo com os dados do evento que cadastramos no formulário
+		mv.addObject("eventos", eventos);
+		return mv;
+	}
 	
 	
-	
+
 }

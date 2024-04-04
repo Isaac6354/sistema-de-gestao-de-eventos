@@ -1,7 +1,29 @@
-<html>
-<body>
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
-<h3>Olá mundo com spring boot!</h3>
+<head>
+	<title>EventosApp</title>
+</head>
+<body>
+	<h1>Lista de Eventos</h1>
+	<h3><a href="/cadastrarEvento">Cadastrar Evento</a></h3>
+	
+	<!--Para cada evento, ele vai pegar do objeto que vamos mandar aqui pra view ${evento}-->
+	<div th:each="evento : ${eventos}">
+		<!--Mostrando os dados do evento-->
+		<div class="row">
+			<p><span th:text="${evento.nome}"></span></p>
+			<p><span th:text="${evento.local}"></span></p>
+			<p><span th:text="${evento.data}"></span></p>
+			<p><span th:text="${evento.horario}"></span></p>
+		</div>
+	
+	
+	</div>
+
 
 </body>
+
+
 </html>
